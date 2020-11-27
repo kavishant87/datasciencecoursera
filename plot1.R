@@ -10,7 +10,7 @@ base1<- subset(baseplot1,Date %in% c("1/2/2007","2/2/2007"))
 ##convert the Date and Time variables to Date format using as.date function.
 base1$Date <- as.Date( base1$Date, format= "%d%m%y")
 
-##Base Plot using histogram
+##Base Plot1 using histogram
 hist(base1$Global_active_power, main = "Global Active Power",
      xlab = "Global Active Power (kilowatts)", 
      ylab="Frequency",
