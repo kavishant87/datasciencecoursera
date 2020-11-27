@@ -13,8 +13,7 @@ base1$Time <- strptime(paste(base1$Date,base1$Time, sep=" "), "%d/%m/%Y %H:%M:%S
 
 
 ##Base Plot 2
-plot(base1$Time,as.numeric(base1$Global_active_power),type="l",xlab="",ylab="Global Active Power (kilowatts)") 
-
 ##save as png file format.
 png("plot2.png", width=480, height=480)
+plot(base1$Time,as.numeric(base1$Global_active_power),type="l",xlab="",ylab="Global Active Power (kilowatts)") 
 dev.off()
