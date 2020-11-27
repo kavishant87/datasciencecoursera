@@ -7,8 +7,7 @@ baseplot1 <- read.csv("C:/Users/kavis/Documents/Kavi files/Git-R Files/datascien
 ## Subset the data from household_power_consumption.txt
 base1<- subset(baseplot1,Date %in% c("1/2/2007","2/2/2007"))
 
-##convert the Date and Time variables into 
-##time format using strptime function.
+##convert the Date and Time variables into time format using strptime function.
 base1$Time <- strptime(paste(base1$Date,base1$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
 
 
