@@ -371,7 +371,7 @@ summary {
 
 <p>##Loading and preprocessing the data</p>
 <p>researchdata &lt;- read.csv(“C:/Users/kavis/Documents/Kavi files/Git-R Files/datasciencecoursera/ReproducibleRs/activity.csv”)</p>
-<p>library(ggplot2)</p>
+<p>library(ggplot2) library(knitr)</p>
 <p>researchdata<span class="math inline">\(date &lt;- as.POSIXct(researchdata\)</span>date, “%Y-%m-%d”) weekday &lt;- weekdays(as.Date(researchdata<span class="math inline">\(date)) researchdata &lt;- cbind(researchdata,weekday) clean &lt;- researchdata[!is.na(researchdata\)</span>steps),] summary(researchdata) head(researchdata)</p>
 <p>##What is mean total number of steps taken per day? totalSteps &lt;- with(researchdata, aggregate(steps, by = list(date), FUN = sum, na.rm = TRUE)) names(totalSteps) &lt;- c(“date”, “steps”)</p>
 <p>##Make a histogram of the total number of steps taken each day hist(totalSteps$steps, main = “Total number of steps taken per day”, xlab = “Total steps taken per day”, col = “red”, ylim = c(0,20), breaks = 5)</p>
