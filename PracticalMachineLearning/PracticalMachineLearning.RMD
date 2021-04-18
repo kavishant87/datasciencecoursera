@@ -1,0 +1,110 @@
+---
+title: "PracticalMachineLearning"
+output: html_document
+---
+## Overview
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways.More information is available from the website here: http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har (see the section on the Weight Lifting Exercise Dataset).
+
+## Data Source
+The training data for this project are available here:
+https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv
+The test data are available here:
+https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
+The data for this project come from this source: http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.
+
+## Data Loading
+
+The data was downloaded from the Weight Lifting Exercise Dataset database.
+Downloaded data was uncompressed and read into R environment.
+
+```{r, echo=TRUE, cache=TRUE}
+train_weight <- read.csv("C:/Users/kavis/Documents/Kavi files/Git-R Files/datasciencecoursera/PracticalMachineLearning/pml-training.csv",sep = ",",header=TRUE,stringsAsFactors = F,na.strings = c("","NA","#DIV/0!"))
+dim(train_weight)
+test_weight <- read.csv("C:/Users/kavis/Documents/Kavi files/Git-R Files/datasciencecoursera/PracticalMachineLearning/pml-testing.csv",sep = ",",header=TRUE,stringsAsFactors = F,na.strings = c("","NA","#DIV/0!"))
+dim(test_weight) 
+library(caret)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+library(ggplot2)
+library(gbm)
+```
+    
+## Data cleaning
+```{r, echo=TRUE, cache=TRUE}
+
+# Removing zero variance using nearZerVar function.
+non_zer_var <- nearZeroVar(train_weight)
+train_clean <- train_weight[, -non_zer_var]
+test_clean <- test_weight[, -non_zer_var]
+
+dim(train_clean)
+dim(test_clean)
+
+# Removing all NA values in training and testing data set.
+na_val <- sapply(train_clean,function(x) mean(is.na(x))) > 0.95
+
+train_clean <- train_clean[,na_val == FALSE]
+test_clean <- test_clean[,na_val == FALSE]
+
+dim(train_clean)
+dim(test_clean)
+
+# Removing all non numeric values in dataset.
+train_clean <- train_clean[,8:59]
+test_clean <- test_clean[, 8:59]
+
+dim(train_clean)
+dim(test_clean)
+
+```
+                      
+## Data Partitioning
+
+Cross validation will be performed by splitting the training data(60%) and testing(40%) data.
+```{r, echo=TRUE, cache=TRUE}
+inTrain <- createDataPartition(train_clean$classe, p= 0.6 ,list=FALSE)
+training <- train_clean[inTrain,]
+testing <- train_clean[-inTrain,]
+dim(training)
+dim(testing)
+```
+
+## Random Forest Model
+
+```{r, echo=TRUE,cache=TRUE}
+# Build Random Forest Model
+set.seed(111)
+controlRFM <- trainControl(method="cv", number=3,verboseIter = FALSE)
+RFM <- train(classe~., data=training,method="rf",ntree=5,trControl=controlRFM)
+RFM$finalModel
+# Predict the RF model using predict()
+predict_RFM <- predict(RFM, testing)
+conf_RFM <- confusionMatrix(predict_RFM,as.factor(testing$classe))
+conf_RFM
+plot(conf_RFM$table, col=conf_RFM$byclass,main = paste("RANDOM FOREST ACCURACY MODEL=", round(conf_RFM$overall['Accuracy'],4)))
+```
+
+## Decision Tree Model
+
+
+```{r, echo=TRUE,cache=TRUE}
+# Build Decion Tree  Model
+DT <- train(classe~., data=training,method="rpart")
+# Predict the DT model using predict()
+predict_DT <- predict(DT, testing)
+conf_DT <- confusionMatrix(predict_DT,as.factor(testing$classe))
+conf_DT
+rpart.plot(DT$finalModel,roundint = FALSE)
+```
+
+# Applying the selected model to the test data.
+The Accuracy of the 2 modeling methods above are : 
+RF : 0.9787
+DT : 0.4808
+After checking overall statistical data,
+ConfusionMatrix show, that RandomForestModel performs better than Decision Tree Model. So RF predicts more accuracy ,will be applied to predict the quiz.
+```{r, echo=TRUE,cache=TRUE}
+PredictTest <- predict(RFM, newdata= test_weight)
+PredictTest
+```
