@@ -1,0 +1,260 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Week4\_Assignment},
+  pdfauthor={KS},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Week4\_Assignment}
+\author{KS}
+\date{5/3/2021}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Introduction}
+\protect\hypertarget{introduction}{}
+
+This data set contains statistics, in arrests per 100,000 residents for
+assault, murder, and rape in each of the 50 US states in 1973. Also
+given is the percent of the population living in urban areas. A data
+frame with 50 observations on 4 variables.
+
+{[},1{]} Murder numeric Murder arrests (per 100,000) {[},2{]} Assault
+numeric Assault arrests (per 100,000) {[},3{]} UrbanPop numeric Percent
+urban population {[},4{]} Rape numeric Rape arrests (per 100,000)
+
+\end{frame}
+
+\begin{frame}{Shiny Web Application}
+\protect\hypertarget{shiny-web-application}{}
+
+\begin{itemize}
+\tightlist
+\item
+  The Shiny Web Application developed by using USArrests Dataset from
+  inbuilt R package.
+\item
+  The developed shiny App has 2 parts, a drop down box on left panel and
+  main panel is on the right
+\item
+  The Crime drop down box facilitates the user to choose 3 different
+  crime rates in USA 1973
+\item
+  Based on the selection in the drop down menu, it is possible to see
+  the associated data,map,regression diagnostics on the tabs in the main
+  panel.
+\end{itemize}
+
+Screenshots of the Server.R file
+
+\begin{figure}
+\centering
+\includegraphics{/Users/kavis/Pictures/Saved Pictures/ServerR.jpg}
+\caption{Alt text}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Slide with R Output}
+\protect\hypertarget{slide-with-r-output}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(USArrests)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Murder          Assault         UrbanPop          Rape      
+##  Min.   : 0.800   Min.   : 45.0   Min.   :32.00   Min.   : 7.30  
+##  1st Qu.: 4.075   1st Qu.:109.0   1st Qu.:54.50   1st Qu.:15.07  
+##  Median : 7.250   Median :159.0   Median :66.00   Median :20.10  
+##  Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  
+##  3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  
+##  Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(graphics)}
+\KeywordTok{pairs}\NormalTok{(USArrests, }\DataTypeTok{panel =}\NormalTok{ panel.smooth, }\DataTypeTok{main =} \StringTok{"USArrests data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{DevelopingDP_Week4_Assn_files/figure-beamer/cars-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Difference between 'USArrests' and its correction}
+\NormalTok{USArrests[}\StringTok{"Maryland"}\NormalTok{, }\StringTok{"UrbanPop"}\NormalTok{] }\CommentTok{# 67 -- the transcription error}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 67
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UA.C <-}\StringTok{ }\NormalTok{USArrests}
+\NormalTok{UA.C[}\StringTok{"Maryland"}\NormalTok{, }\StringTok{"UrbanPop"}\NormalTok{] <-}\StringTok{ }\FloatTok{76.6}
+
+\CommentTok{## also +/- 0.5 to restore the original  <n>.5  percentages}
+\NormalTok{s5u <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Colorado"}\NormalTok{, }\StringTok{"Florida"}\NormalTok{, }\StringTok{"Mississippi"}\NormalTok{, }\StringTok{"Wyoming"}\NormalTok{)}
+\NormalTok{s5d <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Nebraska"}\NormalTok{, }\StringTok{"Pennsylvania"}\NormalTok{)}
+\NormalTok{UA.C[s5u, }\StringTok{"UrbanPop"}\NormalTok{] <-}\StringTok{ }\NormalTok{UA.C[s5u, }\StringTok{"UrbanPop"}\NormalTok{] }\OperatorTok{+}\StringTok{ }\FloatTok{0.5}
+\NormalTok{UA.C[s5d, }\StringTok{"UrbanPop"}\NormalTok{] <-}\StringTok{ }\NormalTok{UA.C[s5d, }\StringTok{"UrbanPop"}\NormalTok{] }\OperatorTok{-}\StringTok{ }\FloatTok{0.5}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}{Links}
+\protect\hypertarget{links}{}
+
+Follow the links for * Shiny app viewer in Rpubs.
+
+\begin{itemize}
+\tightlist
+\item
+  The code can be found at
+\end{itemize}
+
+\end{frame}
+
+\end{document}
